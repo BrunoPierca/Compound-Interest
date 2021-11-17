@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Compound Calculator</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico" />
+    <!--===============================================================================================-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="vendor/bootstrap/css/bootstrap.min.css"
+    />
+    <!--===============================================================================================-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="fonts/font-awesome-4.7.0/css/font-awesome.min.css"
+    />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css" />
+    <!--===============================================================================================-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="vendor/css-hamburgers/hamburgers.min.css"
+    />
+    <!--===============================================================================================-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="vendor/animsition/css/animsition.min.css"
+    />
+    <!--===============================================================================================-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="vendor/select2/select2.min.css"
+    />
+    <!--===============================================================================================-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="vendor/daterangepicker/daterangepicker.css"
+    />
+    <!--===============================================================================================-->
+
+    <!-- <script
+      src="https://use.fontawesome.com/releases/v5.15.3/js/all.js"
+      crossorigin="anonymous"
+    ></script> -->
+
+    <!--===============================================================================================-->
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.js"
+      integrity="sha512-wUa0ktp10dgVVhWdRVfcUO4vHS0ryT42WOEcXjVVF2+2rcYBKTY7Yx7JCEzjWgPV+rj2EDUr8TwsoWF6IoIOPg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <!--===============================================================================================-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!--===============================================================================================-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+      integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!--===============================================================================================-->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"
+      integrity="sha512-Eak/29OTpb36LLo2r47IpVzPBLXnAMPAVypbSZiZ4Qkf8p/7S/XRG5xp7OKWPPYfJT6metI+IORkR5G8F900+g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <!--===============================================================================================-->
+
+    <link rel="stylesheet" type="text/css" href="css/util.css" />
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <!--===============================================================================================-->
+  </head>
+  <body class="background-gradient">
+    <!-- Card principal de opciones -->
+
+    <div id="mainDiv" class="animate__animated container-contact100">
+      <div class="wrap-contact100">
+        <span class="contact100-form-title">Interest Calculator</span>
+
+        <div
+          class="wrap-input100 validate-input"
+          data-validate="Insert any amount of money"
+        >
+          <span class="label-input100">How much are you going to invest?</span>
+          <input
+            required
+            class="input100"
+            type="number"
+            name="q"
+            placeholder="Enter an amount"
+            autocomplete="off"
+            id="qInput"
+          />
+          <span class="focus-input100"></span>
+        </div>
+
+        <div class="wrap-input100 validate-input">
+          <span class="label-input100">What's the APR?</span>
+          <input
+            required
+            class="input100"
+            type="number"
+            id="iInput"
+            name="i"
+            placeholder="%"
+          />
+          <span class="focus-input100"></span>
+        </div>
+
+        <div class="wrap-input100 input100-select">
+          <span class="label-input100">Frequency of compounding</span>
+          <div>
+            <select required class="selection-2" id="fInput" name="frequency">
+              <option>Choose one option</option>
+              <option>Daily</option>
+              <option>Weekly</option>
+              <option>Monthly</option>
+              <option>Yearly</option>
+            </select>
+          </div>
+          <span class="focus-input100"></span>
+        </div>
+        <div id="calcular">
+          <div class="container-contact100-form-btn">
+            <div class="wrap-contact100-form-btn">
+              <div class="contact100-form-bgbtn"></div>
+              <button id="calculateButton" class="contact100-form-btn">
+                <span>
+                  Calculate
+                  <i
+                    class="fa fa-long-arrow-right m-l-7"
+                    aria-hidden="true"
+                  ></i>
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="dropDownSelect1"></div>
+
+    <!-- Display interes + grafico -->
+
+    <div
+      id="secondaryDiv"
+      class="d-none animate__animated container-contact100"
+    >
+      <div class="secondary-Wrap wrap-contact100">
+        <div class="wrap-input100">
+          <h3 class="font-black">Investment details:</h3>
+          <a id="save"><i class="fa fa-save"></i></a>
+          <span class="label-input100">Initial deposit:</span>
+          <span id="initialD" class="float-right label-input100">$</span>
+          <br />
+          <span class="label-input100">APR:</span>
+          <span id="interest" class="float-right label-input100">%</span>
+          <br />
+          <span class="label-input100">Frequency of compounding:</span>
+          <span id="frequency" class="float-right label-input100"></span>
+
+          <span class="focus-input100"></span>
+        </div>
+        <div class="mb-1 wrap-input100">
+          <div>
+            <canvas id="myChart"></canvas>
+          </div>
+        </div>
+        <div class="mb-1 wrap-input100">
+          <span class="font-black">Total:</span>
+          <span id="total" class="float-right label-input100">$</span>
+          <br />
+          <span class="label-input100">Gains:</span>
+          <span id="netYield" class="float-right label-input100">$</span>
+          <br />
+
+          <span class="focus-input100"></span>
+          <span class="label-input100">Daily:</span>
+          <span id="dailyYield" class="float-right label-input100">$</span>
+
+          <br />
+          <span class="label-input100">Weekly: </span>
+          <span id="weeklyYield" class="float-right label-input100">$</span>
+
+          <br />
+          <span class="label-input100">Monthly</span>
+          <span id="monthlyYield" class="float-right label-input100">$</span>
+        </div>
+        <div id="goBackBtn">
+          <div class="container-contact100-form-btn">
+            <div class="wrap-contact100-form-btn">
+              <div class="contact100-form-bgbtn"></div>
+              <button class="contact100-form-btn">
+                <span>
+                  Go back
+                  <i
+                    class="fa fa-long-arrow-right m-l-7"
+                    aria-hidden="true"
+                  ></i>
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--===============================================================================================-->
+    <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/animsition/js/animsition.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/bootstrap/js/popper.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/select2/select2.min.js"></script>
+    <script>
+      $(".selection-2").select2({
+        minimumResultsForSearch: 20,
+        dropdownParent: $("#dropDownSelect1"),
+      });
+    </script>
+    <!--===============================================================================================-->
+    <script src="vendor/daterangepicker/moment.min.js"></script>
+    <script src="vendor/daterangepicker/daterangepicker.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/countdowntime/countdowntime.js"></script>
+    <!--===============================================================================================-->
+    <script src="js/main.js"></script>
+  </body>
+</html>
