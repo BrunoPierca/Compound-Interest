@@ -169,10 +169,12 @@ calculateButton.addEventListener("click", function Calculate() {
 
     if (qChart.length == 12) {
       yield.innerHTML = "$" + (qChart[qChart.length - 1] - quantity).toFixed(2);
-      dailyYield.innerHTML = "$" + (qChart[qChart.length - 1] / 365).toFixed(2);
+      dailyYield.innerHTML =
+        "$" + ((qChart[qChart.length - 1] - quantity) / 365).toFixed(2);
       monthlyYield.innerHTML =
-        "$" + (qChart[qChart.length - 1] / 12).toFixed(2);
-      weeklyYield.innerHTML = "$" + (qChart[qChart.length - 1] / 52).toFixed(2);
+        "$" + ((qChart[qChart.length - 1] - quantity) / 12).toFixed(2);
+      weeklyYield.innerHTML =
+        "$" + ((qChart[qChart.length - 1] - quantity) / 52).toFixed(2);
     }
 
     if (qChart.length == 365) {
@@ -211,10 +213,12 @@ calculateButton.addEventListener("click", function Calculate() {
         qChart[51],
       ];
       yield.innerHTML = "$" + (qChart[qChart.length - 1] - quantity).toFixed(2);
-      dailyYield.innerHTML = "$" + (qChart[qChart.length - 1] / 365).toFixed(2);
+      dailyYield.innerHTML =
+        "$" + ((qChart[qChart.length - 1] - quantity) / 365).toFixed(2);
       monthlyYield.innerHTML =
-        "$" + (qChart[qChart.length - 1] / 12).toFixed(2);
-      weeklyYield.innerHTML = "$" + (qChart[qChart.length - 1] / 52).toFixed(2);
+        "$" + ((qChart[qChart.length - 1] - quantity) / 12).toFixed(2);
+      weeklyYield.innerHTML =
+        "$" + ((qChart[qChart.length - 1] - quantity) / 52).toFixed(2);
     }
 
     if (qChart.length < 2) {
@@ -230,10 +234,12 @@ calculateButton.addEventListener("click", function Calculate() {
         qChart.push(qChartYearly);
       }
       yield.innerHTML = "$" + (qChart[qChart.length - 1] - quantity).toFixed(2);
-      dailyYield.innerHTML = "$" + (qChart[qChart.length - 1] / 365).toFixed(2);
+      dailyYield.innerHTML =
+        "$" + ((qChart[qChart.length - 1] - quantity) / 365).toFixed(2);
       monthlyYield.innerHTML =
-        "$" + (qChart[qChart.length - 1] / 12).toFixed(2);
-      weeklyYield.innerHTML = "$" + (qChart[qChart.length - 1] / 52).toFixed(2);
+        "$" + ((qChart[qChart.length - 1] - quantity) / 12).toFixed(2);
+      weeklyYield.innerHTML =
+        "$" + ((qChart[qChart.length - 1] - quantity) / 52).toFixed(2);
     }
     total.innerHTML = "$" + qChart[qChart.length - 1].toFixed(2);
 
@@ -335,22 +341,3 @@ function dibujarTabla() {
     window.myChart = new Chart(document.getElementById("myChart"), config);
   }
 }
-
-// Dump
-// ------------------------------------------------------------------------------------
-// function calculate(quantity, interest, time, frequency) {
-
-//   let calculus =
-//     quantity * (1 * Math.pow(1 + interest / frequency, frequency * time));
-
-//   console.log(calculus);
-
-//   // let APR
-// }
-
-// Compound interest = P(1 + I/veces que compone)elevado a n
-// P es PLATITAAA
-// i es Interes
-// n compounding frequency in years
-
-// calculate(100, 0.1, 1, 12);
