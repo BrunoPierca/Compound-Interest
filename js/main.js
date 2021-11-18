@@ -178,6 +178,7 @@ calculateButton.addEventListener("click", function Calculate() {
     }
 
     if (qChart.length == 365) {
+      console.log("tuki");
       qChart = [
         qChart[30],
         qChart[58],
@@ -193,10 +194,12 @@ calculateButton.addEventListener("click", function Calculate() {
         qChart[364],
       ];
       yield.innerHTML = "$" + (qChart[qChart.length - 1] - quantity).toFixed(2);
-      dailyYield.innerHTML = "$" + (qChart[qChart.length - 1] / 365).toFixed(2);
+      dailyYield.innerHTML =
+        "$" + ((qChart[qChart.length - 1] - quantity) / 365).toFixed(2);
       monthlyYield.innerHTML =
-        "$" + (qChart[qChart.length - 1] / 12).toFixed(2);
-      weeklyYield.innerHTML = "$" + (qChart[qChart.length - 1] / 52).toFixed(2);
+        "$" + ((qChart[qChart.length - 1] - quantity) / 12).toFixed(2);
+      weeklyYield.innerHTML =
+        "$" + ((qChart[qChart.length - 1] - quantity) / 52).toFixed(2);
     } else if (qChart.length == 52) {
       qChart = [
         qChart[4],
